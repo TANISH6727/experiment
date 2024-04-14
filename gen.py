@@ -1,4 +1,4 @@
-from PIL import ImageFont, ImageDraw, Image
+from PIL import ImageFont, ImageDraw, Image, ImageOps
 def textsize(text, font):
     im = Image.new(mode="P", size=(0, 0))
     draw = ImageDraw.Draw(im)
@@ -8,7 +8,7 @@ def textsize(text, font):
 characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 
 # Font and image size
-font_path = "../Open_Sans/static/OpenSans_SemiCondensed-Regular.ttf"  # Replace with your desired font path
+font_path = "Open_Sans/static/OpenSans_SemiCondensed-Regular.ttf"  # Replace with your desired font path
 font_size = 200  # Adjust font size as needed
 image_size = (500, 500)  # Adjust image size as needed
 
@@ -33,8 +33,8 @@ for char in characters:
 
     # Draw text
     draw.text((x, y), char, fill=(0, 0, 0), font=font)
-
+    image=ImageOps.expand(image, border=15, fill=0)
     # Save image
-    image.save(f"character_{char}.png")
+    image.save(f"./chars/character_{char}.png")
 
 print("Created images for all characters successfully!")
